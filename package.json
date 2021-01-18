@@ -11,17 +11,22 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "gulp all:tsconfig.json && gulp tslint.json && gulp dist",
-    "prestart": "gulp example:build",
-    "start": "node --experimental-modules build/example/example/main.js",
-    "pretest": "npm run lint && gulp lib:build",
-    "test": "gulp test",
-    "test-online": "OCILO_TEST_ONLINE=true npm test",
-    "prepublishOnly": "npm run test-online",
+    "start": "node --experimental-modules dist/example/main.js",
     "lint": "eslint \"./src/lib/**/*.ts\"",
     "lint:fix": "eslint \"./src/lib/**/*.ts\" --fix",
+    "prepare": "npm run build",
     "prettier": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\"",
-    "prettier:autofix": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\" --write"
+    "prettier:autofix": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\" --write",
+    "test": "cross-env TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT='./src/test/tsconfig.json' mocha --config ./.mocharc.js",
+    "test:watch": "cross-env TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT='./src/test/tsconfig.json' mocha --config ./.mocharc.js --watch",
+    "test:coverage": "nyc npm run test",
+    "start:old": "node --experimental-modules build/example/example/main.js",
+    "prepare:old": "gulp all:tsconfig.json && gulp tslint.json && gulp dist",
+    "prestart:old": "gulp example:build",
+    "pretest:old": "npm run lint && gulp lib:build",
+    "test:old": "gulp test",
+    "test-online": "OCILO_TEST_ONLINE=true npm test",
+    "prepublishOnly:old": "npm run test-online"
   },
   "keywords": [
     "Skype",
@@ -58,6 +63,7 @@
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "chai": "^4.2.0",
+    "cross-env": "^7.0.3",
     "del": "^3.0.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.18.0",
@@ -71,6 +77,7 @@
     "gulp-cli": "^2.0.1",
     "minimist": "^1.2.5",
     "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.2.1",
     "ts-node": "^9.1.0",
@@ -98,5 +105,8 @@
     "url": "https://github.com/SergioV85/skype-http/issues"
   },
   "homepage": "https://github.com/SergioV85/skype-http#readme",
-  "author": "ocilo -> Sorunome -> SergioV85"
+  "author": "ocilo -> Sorunome -> SergioV85",
+  "files": [
+    "dist/lib/**/*"
+  ]
 }

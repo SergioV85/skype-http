@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './test.env' });
+require('dotenv').config();
 
 module.exports = {
   extension: ['ts'],
@@ -6,6 +6,6 @@ module.exports = {
   package: './package.json',
   // reporter: 'spec',
   reporter: 'dot',
-  spec: ['./src/*test/**/*.spec.*'],
+  spec: ['./src/test/**/*.spec.*'],
   require: ['ts-node/register'],
 };

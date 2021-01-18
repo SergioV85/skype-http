@@ -7,7 +7,7 @@
     "alwaysStrict": true,
     "charset": "utf8",
     "checkJs": false,
-    "declaration": false,
+    "declaration": true,
     "disableSizeLimit": false,
     "downlevelIteration": false,
     "emitBOM": false,
@@ -41,6 +41,7 @@
     "noImplicitUseStrict": false,
     "noLib": false,
     "noResolve": false,
+    "outDir": "./dist",
     "preserveConstEnums": false,
     "removeComments": false,
     "skipLibCheck": true,
@@ -55,5 +56,7 @@
       "src/custom-typings",
       "node_modules/@types"
     ]
-  }
+  },
+  "include": ["src/**/*.*"],
+  "exclude": ["src/**/*.test.ts"]
 }
