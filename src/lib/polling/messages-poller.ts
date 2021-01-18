@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import cheerio from 'cheerio';
 import _events from 'events';
 import { Incident } from 'incident';
@@ -63,11 +64,21 @@ export function formatControlClearTypingResource(
   return retObj as resources.ControlClearTypingResource;
 }
 
+interface FormattedMessageResource {
+  type: resources.ResourceType;
+  id: string;
+  composeTime: Date;
+  arrivalTime: Date;
+  from: ParsedConversationId;
+  conversation: string;
+  native: nativeResources.MessageResource;
+}
+
 // Export for testing
 export function formatGenericMessageResource(
   nativeResource: nativeResources.MessageResource,
   type: resources.ResourceType,
-) {
+): FormattedMessageResource {
   const parsedConversationUri: messagesUri.ConversationUri = messagesUri.parseConversation(
     nativeResource.conversationLink,
   );
@@ -162,11 +173,11 @@ export function formatMemberConsumptionHorizonUpdateResource(
 
 function formatMessageResource(nativeResource: nativeResources.MessageResource): resources.Resource {
   switch (nativeResource.messagetype) {
-    case 'RichText/UriObject':
+    // case 'RichText/UriObject':
     // tslint:disable-next-line:max-line-length
     // return formatUriObjectResource(formatFileResource(formatGenericMessageResource(nativeResource, nativeResource.messagetype), <nativeMessageResources.UriObject> nativeResource), <nativeMessageResources.UriObject> nativeResource);
+    case 'RichText/UriObject':
     case 'RichText/Media_Video':
-      // tslint:disable-next-line:max-line-length
       return formatMediaVideoResource(
         formatFileResource(
           formatGenericMessageResource(nativeResource, nativeResource.messagetype),
@@ -175,7 +186,6 @@ function formatMessageResource(nativeResource: nativeResources.MessageResource):
         <nativeMessageResources.MediaVideo>nativeResource,
       );
     case 'RichText/Media_AudioMsg':
-      // tslint:disable-next-line:max-line-length
       return formatMediaAudioResource(
         formatFileResource(
           formatGenericMessageResource(nativeResource, nativeResource.messagetype),
@@ -184,7 +194,6 @@ function formatMessageResource(nativeResource: nativeResources.MessageResource):
         <nativeMessageResources.MediaAudio>nativeResource,
       );
     case 'RichText/Media_GenericFile':
-      // tslint:disable-next-line:max-line-length
       return formatMediaGenericFileResource(
         formatFileResource(
           formatGenericMessageResource(nativeResource, nativeResource.messagetype),
@@ -193,31 +202,26 @@ function formatMessageResource(nativeResource: nativeResources.MessageResource):
         <nativeMessageResources.MediaGenericFile>nativeResource,
       );
     case 'RichText/Location':
-      // tslint:disable-next-line:max-line-length
       return formatLocationResource(
         formatGenericMessageResource(nativeResource, nativeResource.messagetype),
         <nativeMessageResources.LocationObject>nativeResource,
       );
     case 'Event/Call':
-      // tslint:disable-next-line:max-line-length
       return formatEventCallResource(
         formatGenericMessageResource(nativeResource, nativeResource.messagetype),
         <nativeMessageResources.EventCall>nativeResource,
       );
     case 'RichText':
-      // tslint:disable-next-line:max-line-length
       return formatRichTextResource(
         formatGenericMessageResource(nativeResource, nativeResource.messagetype),
         <nativeMessageResources.RichText>nativeResource,
       );
     case 'Text':
-      // tslint:disable-next-line:max-line-length
       return formatTextResource(
         formatGenericMessageResource(nativeResource, nativeResource.messagetype),
         <nativeMessageResources.Text>nativeResource,
       );
     case 'Control/ClearTyping':
-      // tslint:disable-next-line:max-line-length
       return formatControlClearTypingResource(
         formatGenericMessageResource(nativeResource, nativeResource.messagetype),
         <nativeMessageResources.ControlClearTyping>nativeResource,
@@ -460,7 +464,7 @@ export class MessagesPoller extends _events.EventEmitter {
     return this;
   }
 
-  protected async getMessagesLoop() {
+  protected async getMessagesLoop(): Promise<void> {
     if (this.isActive()) {
       // console.log(new Date() +"~~~~~~~~~~~~~~~~~~~~~~~getMessagesLoop  START ~~~~~~~~~~~~~~~~~~~~~~~~~~");
       await this.getMessages();
@@ -469,7 +473,7 @@ export class MessagesPoller extends _events.EventEmitter {
     }
   }
 
-  protected async getNotificationsLoop() {
+  protected async getNotificationsLoop(): Promise<void> {
     if (this.isActive()) {
       // console.log(new Date() +"~~~~~~~~~~~~~~~~~~~~~~~getNotificationsRecursive  START ~~~~~~~~~~~~~~~~~~~~~~~~~~");
       await this.getNotifications();
@@ -544,6 +548,7 @@ export class MessagesPoller extends _events.EventEmitter {
       }
     } catch (err) {
       if (!(err instanceof Error)) {
+        // eslint-disable-next-line no-ex-assign
         err = new Error(err);
       }
       this.emit('error', Incident(err, 'poll', 'An error happened while processing the polled messages'));
@@ -606,6 +611,7 @@ export class MessagesPoller extends _events.EventEmitter {
       }
     } catch (err) {
       if (!(err instanceof Error)) {
+        // eslint-disable-next-line no-ex-assign
         err = new Error(err);
       }
       this.emit('error', Incident(err, 'poll', 'An error happened while processing the polled notifications'));

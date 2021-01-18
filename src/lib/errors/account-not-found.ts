@@ -4,6 +4,7 @@ export namespace AccountNotFound {
   export type Name = 'AccountNotFound';
   export const name: Name = 'AccountNotFound';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -14,7 +15,7 @@ export type AccountNotFound = Incident<AccountNotFound.Data, AccountNotFound.Nam
 export namespace AccountNotFound {
   export type Type = AccountNotFound;
 
-  export function format() {
+  export function format(): string {
     return 'AccountNotFound';
   }
 

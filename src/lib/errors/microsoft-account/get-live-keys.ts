@@ -23,7 +23,7 @@ export type MsprequCookieNotFoundError = Incident<
 export namespace MsprequCookieNotFoundError {
   export type Type = MsprequCookieNotFoundError;
 
-  export function format({ response, request }: Data) {
+  export function format({ response, request }: Data): string {
     return (
       'Unable to find the MSPRequ cookie for https://login.live.com/.' +
       ' This cookie is normally set in the response headers.' +
@@ -58,7 +58,7 @@ export type MspokCookieNotFoundError = Incident<
 export namespace MspokCookieNotFoundError {
   export type Type = MspokCookieNotFoundError;
 
-  export function format({ response, request }: Data) {
+  export function format({ response, request }: Data): string {
     return (
       'Unable to find the MSPOK cookie for https://login.live.com/.' +
       ' This cookie is normally set in the response headers.' +
@@ -92,7 +92,7 @@ export type PpftKeyNotFoundError = Incident<
 export namespace PpftKeyNotFoundError {
   export type Type = PpftKeyNotFoundError;
 
-  export function format({ html }: Data) {
+  export function format({ html }: Data): string {
     return (
       'Unable to find the PPFT key for https://login.live.com/.' +
       ' This key is normally found in the HTML response, in a Javascript literal string containing an HTML input' +
@@ -111,6 +111,7 @@ export namespace GetLiveKeysError {
   export type Name = 'GetLiveKeys';
   export const name: Name = 'GetLiveKeys';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = RequestError | MspokCookieNotFoundError | MsprequCookieNotFoundError | PpftKeyNotFoundError;
@@ -121,7 +122,7 @@ export type GetLiveKeysError = Incident<GetLiveKeysError.Data, GetLiveKeysError.
 export namespace GetLiveKeysError {
   export type Type = GetLiveKeysError;
 
-  export function format() {
+  export function format(): string {
     return 'Unable to get the MSPRequ, MSPOK and PPFT keys from login.live.com';
   }
 

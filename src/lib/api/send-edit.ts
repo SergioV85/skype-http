@@ -3,7 +3,6 @@ import * as api from '../interfaces/api/api';
 import { Context } from '../interfaces/api/context';
 import * as io from '../interfaces/http-io';
 import * as messagesUri from '../messages-uri';
-import { getCurrentTime } from '../utils';
 
 interface EditMessageQuery {
   messagetype: string;

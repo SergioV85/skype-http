@@ -4,6 +4,7 @@ export namespace AccountRecoverRestriction {
   export type Name = 'AccountRecoverRestriction';
   export const name: Name = 'AccountRecoverRestriction';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -19,7 +20,7 @@ export type AccountRecoverRestriction = Incident<
 export namespace AccountRecoverRestriction {
   export type Type = AccountRecoverRestriction;
 
-  export function format() {
+  export function format(): string {
     return "It looks like someone else might be using your account. You need to verify that it's yours.";
   }
 

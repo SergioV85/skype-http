@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as api from './api';
 import * as errors from './errors/index';
 import * as apiInterface from './interfaces/api/api';

@@ -4,6 +4,7 @@ export namespace UpsellOfferError {
   export type Name = 'UpsellOffer';
   export const name: Name = 'UpsellOffer';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -14,7 +15,7 @@ export type UpsellOfferError = Incident<UpsellOfferError.Data, UpsellOfferError.
 export namespace UpsellOfferError {
   export type Type = UpsellOfferError;
 
-  export function format() {
+  export function format(): string {
     return 'UpsellOffer';
   }
 

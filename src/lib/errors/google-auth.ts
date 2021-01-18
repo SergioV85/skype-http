@@ -4,6 +4,7 @@ export namespace GoogleAuthRequired {
   export type Name = 'GoogleAuthRequired';
   export const name: Name = 'GoogleAuthRequired';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -14,7 +15,7 @@ export type GoogleAuthRequired = Incident<GoogleAuthRequired.Data, GoogleAuthReq
 export namespace GoogleAuthRequired {
   export type Type = GoogleAuthRequired;
 
-  export function format() {
+  export function format(): string {
     return 'GoogleAuthRequired';
   }
 

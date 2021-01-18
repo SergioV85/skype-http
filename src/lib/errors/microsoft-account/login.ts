@@ -10,6 +10,7 @@ export namespace MicrosoftAccountLoginError {
   export type Name = 'MicrosoftAccountLogin';
   export const name: Name = 'MicrosoftAccountLogin';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause =
@@ -29,7 +30,7 @@ export type MicrosoftAccountLoginError = Incident<
 export namespace MicrosoftAccountLoginError {
   export type Type = MicrosoftAccountLoginError;
 
-  export function format() {
+  export function format(): string {
     return 'Unable to login with MicrosoftAccount.';
   }
 

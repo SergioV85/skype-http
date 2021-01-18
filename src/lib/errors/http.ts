@@ -24,7 +24,7 @@ export type UnexpectedHttpStatusError = Incident<
 export namespace UnexpectedHttpStatusError {
   export type Type = UnexpectedHttpStatusError;
 
-  export function format({ expected, response, request }: Data) {
+  export function format({ expected, response, request }: Data): string {
     const msg: string =
       `Received response with the HTTP status code \`${response.statusCode}\`` +
       ` but expected one of ${util.inspect(expected)}.`;
@@ -62,7 +62,7 @@ export type MissingHeaderError = Incident<MissingHeaderError.Data, MissingHeader
 export namespace MissingHeaderError {
   export type Type = MissingHeaderError;
 
-  export function format({ headerName, response, request }: Data) {
+  export function format({ headerName, response, request }: Data): string {
     const msg: string =
       `Received response with headers \`${util.inspect(response.headers)}\`` +
       ` where the expected header ${util.inspect(headerName)} is missing.`;
@@ -98,7 +98,7 @@ export type RequestError = Incident<RequestError.Data, RequestError.Name, Reques
 export namespace RequestError {
   export type Type = RequestError;
 
-  export function format({ request }: Data) {
+  export function format({ request }: Data): string {
     return `The following HTTP request failed: "${JSON.stringify(request)}"`;
   }
 

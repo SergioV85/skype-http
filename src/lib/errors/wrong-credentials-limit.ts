@@ -4,6 +4,7 @@ export namespace WrongCredentialsLimitError {
   export type Name = 'WrongCredentialsLimit';
   export const name: Name = 'WrongCredentialsLimit';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -19,7 +20,7 @@ export type WrongCredentialsLimitError = Incident<
 export namespace WrongCredentialsLimitError {
   export type Type = WrongCredentialsLimitError;
 
-  export function format() {
+  export function format(): string {
     return "You've tried to sign in too many times with an incorrect account or password";
   }
 

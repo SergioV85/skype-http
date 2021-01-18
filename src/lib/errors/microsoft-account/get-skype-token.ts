@@ -21,7 +21,7 @@ export type SkypeTokenNotFoundError = Incident<
 export namespace SkypeTokenNotFoundError {
   export type Type = SkypeTokenNotFoundError;
 
-  export function format({ html }: Data) {
+  export function format({ html }: Data): string {
     return (
       'Unable to find the OAuth Skype token. This may be caused by wrong credentials or a change in' +
       ' the Microsoft login workflow. You may also have hit a CAPTCHA wall.' +
@@ -39,6 +39,7 @@ export namespace GetSkypeTokenError {
   export type Name = 'GetSkypeToken';
   export const name: Name = 'GetSkypeToken';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = RequestError | SkypeTokenNotFoundError;
@@ -49,7 +50,7 @@ export type GetSkypeTokenError = Incident<GetSkypeTokenError.Data, GetSkypeToken
 export namespace GetSkypeTokenError {
   export type Type = GetSkypeTokenError;
 
-  export function format() {
+  export function format(): string {
     return 'Unable to get the OAuth Skype token.';
   }
 

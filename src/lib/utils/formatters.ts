@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Incident } from 'incident';
 import { map } from 'lodash';
 import { Contact } from '../interfaces/api/contact';
@@ -59,6 +60,7 @@ export function formatContact(native: NativeContact): Contact {
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/agentToPerson.js
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
 function agentToPerson(native: any): any {}
 
 // TODO: check that the uri uses the HTTPS protocol
@@ -66,6 +68,7 @@ function ensureHttps(uri: string) {
   return uri;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function define(...args: any[]) {
   return null;
 }
@@ -87,8 +90,7 @@ function searchContactToPerson(native: NativeSearchContact): Contact {
   const locations: any[] = [];
   const type: MriType = MriType.Skype;
   const typeKey: MriTypeCode = mriTypeToTypeCode(type);
-  let result: Contact;
-  result = {
+  return {
     id: {
       id: native.username,
       typeKey,
@@ -108,7 +110,6 @@ function searchContactToPerson(native: NativeSearchContact): Contact {
     activityMessage: native.mood,
     locations,
   };
-  return result;
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/contactToPerson.js
@@ -116,7 +117,6 @@ function contactToPerson(native: NativeContact): Contact {
   const SUGGESTED_CONTACT_ACTIVITY_MESSAGE = 'Skype';
 
   // TODO(demurgos): typedef
-  // tslint:disable-next-line:typedef
   const authorizationStates = {
     UNKNOWN: 'UNKNOWN',
     UNAUTHORIZED: 'UNAUTHORIZED',
@@ -127,7 +127,6 @@ function contactToPerson(native: NativeContact): Contact {
   };
 
   // TODO(demurgos): typedef
-  // tslint:disable-next-line:typedef
   const showStrategies = {
     ALL: 'ALL',
     AVAILABLE_ONLY: 'AVAILABLE_ONLY',
@@ -187,8 +186,7 @@ function contactToPerson(native: NativeContact): Contact {
   const phoneNumbers: any[] = [];
   const locations: any[] = [];
 
-  let result: Contact;
-  result = {
+  return {
     id: {
       id: native.id,
       typeKey,
@@ -207,7 +205,6 @@ function contactToPerson(native: NativeContact): Contact {
     activityMessage,
     locations,
   };
-  return result;
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/dataMaps.js

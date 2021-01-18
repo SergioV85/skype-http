@@ -17,10 +17,10 @@
     "test": "gulp test",
     "test-online": "OCILO_TEST_ONLINE=true npm test",
     "prepublishOnly": "npm run test-online",
-    "lint": "eslint \"./src/**/*.*\"",
-    "lint:fix": "eslint \"./src/**/*.*\" --fix",
-    "prettier": "prettier --config .prettierrc --list-different \"./src/**/*.{js,ts,json}\"",
-    "prettier:autofix": "prettier --config .prettierrc --list-different \"./src/**/*.{js,ts,json}\" --write"
+    "lint": "eslint \"./src/lib/**/*.ts\"",
+    "lint:fix": "eslint \"./src/lib/**/*.ts\" --fix",
+    "prettier": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\"",
+    "prettier:autofix": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\" --write"
   },
   "pre-commit": {
     "run": [

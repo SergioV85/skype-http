@@ -4,6 +4,7 @@ export namespace AbuseBehavior {
   export type Name = 'AbuseBehavior';
   export const name: Name = 'AbuseBehavior';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -14,7 +15,7 @@ export type AbuseBehavior = Incident<AbuseBehavior.Data, AbuseBehavior.Name, Abu
 export namespace AbuseBehavior {
   export type Type = AbuseBehavior;
 
-  export function format() {
+  export function format(): string {
     return 'AbuseBehavior';
   }
 

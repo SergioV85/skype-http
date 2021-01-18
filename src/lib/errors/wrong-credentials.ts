@@ -21,7 +21,7 @@ export type WrongCredentialsError = Incident<
 export namespace WrongCredentialsError {
   export type Type = WrongCredentialsError;
 
-  export function format({ username }: Data) {
+  export function format({ username }: Data): string {
     if (typeof username === 'string') {
       return `Wrong credentials for the user "${username}"`;
     } else {

@@ -11,6 +11,7 @@ import * as httpIo from './interfaces/http-io';
 
 const CONVERSATION_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)$/;
 const CONTACT_PATTERN = /^\/v1\/users\/([^/]+)\/contacts\/([^/]+)$/;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MESSAGES_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)\/messages$/;
 const MESSAGE_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)\/messages\/([^/]+)$/;
 
@@ -221,6 +222,7 @@ export function poll(
  * @param apiContext
  * @return  notifications URI
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function notifications(io: httpIo.HttpIo, apiContext: any): Promise<string> {
   const updatedRegistrationInfo: RegistrationInfo = await updateRegistrationInfo(
     io,

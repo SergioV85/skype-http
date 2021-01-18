@@ -272,7 +272,9 @@ export async function requestLiveToken(options: GetLiveTokenOptions): Promise<io
   };
 
   try {
-    return options.httpIo.post(postOptions);
+    const result = await options.httpIo.post(postOptions);
+
+    return result;
   } catch (err) {
     throw httpErrors.RequestError.create(err, postOptions);
   }
@@ -301,12 +303,10 @@ export async function checkIfUpsellIsPresentAndDismiss(html: string, options: Ge
     let pprid: any = '';
     let uaid: any = '';
 
-    Object.values(inputValues).forEach((element) => {
-      // @ts-ignore
+    Object.values(inputValues).forEach((element: any) => {
       if (element.attribs) {
-        // @ts-ignore
         const paramName: string = element.attribs.name.replace('\\"', '').replace('\\"', '');
-        // @ts-ignore
+
         const paramValue: string = element.attribs.value.replace('\\"', '').replace('\\"', '');
 
         switch (paramName) {
@@ -403,7 +403,6 @@ export function scrapLiveToken(html: string): string {
     } else if (formSubmitUrl !== undefined && formSubmitUrl !== '') {
       if (formSubmitUrl.indexOf('Abuse') >= 0) {
         throw AbuseBehavior.create();
-      } else if (formSubmitUrl.indexOf('/login') >= 0) {
       } else if (formSubmitUrl.indexOf('/remind') >= 0) {
         throw AccountUpdate.create();
       }
@@ -476,7 +475,8 @@ export async function requestSkypeToken(options: GetSkypeTokenOptions): Promise<
   };
 
   try {
-    return options.httpIo.post(postOptions);
+    const result = await options.httpIo.post(postOptions);
+    return result;
   } catch (err) {
     throw httpErrors.RequestError.create(err, postOptions);
   }

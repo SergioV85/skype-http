@@ -19,7 +19,7 @@ export function zeroPad(number: number | string, len: number): string {
   return padLeft(number, len, '0');
 }
 
-export function padLeft(str: any, len: number, char = ' '): string {
+export function padLeft(str: unknown, len: number, char = ' '): string {
   let result = String(str);
   const missing: number = len - result.length;
   if (missing > 0) {
@@ -28,7 +28,7 @@ export function padLeft(str: any, len: number, char = ' '): string {
   return result;
 }
 
-export function padRight(str: any, len: number, char = ' '): string {
+export function padRight(str: unknown, len: number, char = ' '): string {
   let result = String(str);
   const missing: number = len - result.length;
   if (missing > 0) {
@@ -61,7 +61,7 @@ export function getTimezone(): string {
 const HTTP_HEADER_SEPARATOR = ';';
 const HTTP_HEADER_OPERATOR = '=';
 
-export function stringifyHeaderParams(params: { [key: string]: string }) {
+export function stringifyHeaderParams(params: { [key: string]: string }): string {
   const headerPairs: string[] = map(params, (value: string, key: string) => {
     if (value === undefined) {
       throw new Error(`Undefined value for the header: ${key}`);
@@ -98,7 +98,7 @@ export function parseHeaderParams(params: string): Map<string, string> {
 }
 
 export function getMembers(allUsers: AllUsers): Members[] {
-  return Object.keys(allUsers).reduce((acc: any[], key: string) => {
+  return Object.keys(allUsers).reduce((acc: Members[], key: string) => {
     const role: 'Admin' | 'User' | string = key === 'admins' ? 'Admin' : 'User';
     const parsedGroup: Members[] = allUsers[key].map((id: string) => ({ id, role }));
 

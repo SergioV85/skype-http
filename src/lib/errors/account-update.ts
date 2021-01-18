@@ -4,6 +4,7 @@ export namespace AccountUpdate {
   export type Name = 'AccountUpdate';
   export const name: Name = 'AccountUpdate';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -14,7 +15,7 @@ export type AccountUpdate = Incident<AccountUpdate.Data, AccountUpdate.Name, Acc
 export namespace AccountUpdate {
   export type Type = AccountUpdate;
 
-  export function format() {
+  export function format(): string {
     return 'AccountUpdate';
   }
 

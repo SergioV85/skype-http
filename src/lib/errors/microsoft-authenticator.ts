@@ -4,6 +4,7 @@ export namespace MicrosoftAuthenticator {
   export type Name = 'MicrosoftAuthenticator';
   export const name: Name = 'MicrosoftAuthenticator';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = undefined;
@@ -18,7 +19,7 @@ export type MicrosoftAuthenticator = Incident<
 export namespace MicrosoftAuthenticator {
   export type Type = MicrosoftAuthenticator;
 
-  export function format() {
+  export function format(): string {
     return 'MicrosoftAuthenticator';
   }
 

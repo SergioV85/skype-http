@@ -29,7 +29,7 @@ export interface Conversation {
     consumptionhorizon?: string;
   };
   // TODO: Check if empty object really occurs
-  lastMessage: {} | MessageResource;
+  lastMessage: Record<string, never> | MessageResource;
   // https://{host}/v1/users/ME/contacts/{thread}/messages (even if targetLink points to /v1/threads)
   messages: string;
 }

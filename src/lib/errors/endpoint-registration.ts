@@ -3,7 +3,6 @@ import { GetOptions, Response } from '../interfaces/http-io';
 import { MissingHeaderError, UnexpectedHttpStatusError } from './http';
 import { Type as LoginRateLimitExceeded } from './login-rate-limit-exceeded';
 import { Type as RedirectionLimit } from './redirection-limit';
-
 export namespace EndpointRegistrationError {
   export type Name = 'EndpointRegistration';
 

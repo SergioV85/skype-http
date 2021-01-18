@@ -6,6 +6,7 @@ import { Conversation as NativeConversation, Thread as NativeThread } from '../i
 import * as messagesUri from '../messages-uri';
 import { formatConversation, formatThread } from '../utils/formatters';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface ConversationBody {
   conversations: NativeConversation[];
   _metadata: {

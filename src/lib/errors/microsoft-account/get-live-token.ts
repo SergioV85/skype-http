@@ -21,7 +21,7 @@ export type LiveTokenNotFoundError = Incident<
 export namespace LiveTokenNotFoundError {
   export type Type = LiveTokenNotFoundError;
 
-  export function format({ html }: Data) {
+  export function format({ html }: Data): string {
     return (
       'Unable to find the Live token.' +
       ' This token is normally found in the HTML response as the value of the element with the id "t".' +
@@ -39,6 +39,7 @@ export namespace GetLiveTokenError {
   export type Name = 'GetLiveToken';
   export const name: Name = 'GetLiveToken';
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Data {}
 
   export type Cause = RequestError | LiveTokenNotFoundError;
@@ -49,7 +50,7 @@ export type GetLiveTokenError = Incident<GetLiveTokenError.Data, GetLiveTokenErr
 export namespace GetLiveTokenError {
   export type Type = GetLiveTokenError;
 
-  export function format() {
+  export function format(): string {
     return 'Unable to get the Live token for Skype';
   }
 

@@ -16,7 +16,7 @@ export type ProxyError = Incident<ProxyError.Data, ProxyError.Name, ProxyError.C
 export namespace ProxyError {
   export type Type = ProxyError;
 
-  export function format({ html }: Data) {
+  export function format({ html }: Data): string {
     return 'ProxyError' + ` HTML page: ${JSON.stringify(html)}`;
   }
 
