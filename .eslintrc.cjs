@@ -32,4 +32,14 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 2018,
   },
+  globals: {
+    it: true,
+    expect: true,
+    spyOn: true,
+    describe: true,
+    afterEach: true,
+    beforeEach: true,
+    afterAll: true,
+    beforeAll: true,
+  },
 };

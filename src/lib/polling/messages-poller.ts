@@ -14,7 +14,7 @@ import * as nativeMessageResources from '../interfaces/native-api/message-resour
 import * as nativeResources from '../interfaces/native-api/resources';
 import * as messagesUri from '../messages-uri';
 
-let lastMsgId = 0; // this is used to make the next poll request
+// let lastMsgId = 0; // this is used to make the next poll request
 // let notifUri: string;
 
 // Match a contact id:
@@ -311,16 +311,14 @@ function formatMediaAudioResource(
   return ret;
 }
 
-// tslint:disable-next-line:max-line-length
-function formatUriObjectResource(
-  retObj: resources.FileResource,
-  native: nativeMessageResources.UriObject,
-): resources.RichTextUriObjectResource {
-  const ret: resources.RichTextUriObjectResource = retObj as resources.RichTextUriObjectResource;
-  return ret;
-}
+// function formatUriObjectResource(
+//   retObj: resources.FileResource,
+//   native: nativeMessageResources.UriObject,
+// ): resources.RichTextUriObjectResource {
+//   const ret: resources.RichTextUriObjectResource = retObj as resources.RichTextUriObjectResource;
+//   return ret;
+// }
 
-// tslint:disable-next-line:max-line-length
 function formatLocationResource(
   retObj: resources.Resource,
   native: nativeMessageResources.LocationObject,
@@ -599,7 +597,7 @@ export class MessagesPoller extends _events.EventEmitter {
       }
       if (body.eventMessages !== undefined) {
         for (const msg of body.eventMessages) {
-          lastMsgId = msg.id;
+          // lastMsgId = msg.id;
           const formatted: events.EventMessage = formatEventMessage(msg);
           if (!this.apiContext.ackId || formatted.id > this.apiContext.ackId) {
             this.apiContext.ackId = formatted.id;

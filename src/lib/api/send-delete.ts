@@ -3,8 +3,7 @@ import { Context } from '../interfaces/api/context';
 import * as io from '../interfaces/http-io';
 import * as messagesUri from '../messages-uri';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface EditMessageQuery {
+export interface EditMessageQuery {
   messagetype: string;
   content: string;
 }

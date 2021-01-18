@@ -16,7 +16,7 @@ import { Location as _Location } from './types/location';
 export { connect, ConnectOptions } from './connect';
 export { events };
 export { resources };
-namespace native {
+export namespace native {
   export import contact = nativeContact;
   export import conversation = nativeConversation;
   export import resources = nativeResources;

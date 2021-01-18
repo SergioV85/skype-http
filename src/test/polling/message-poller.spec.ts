@@ -156,25 +156,27 @@ describe('formatControlTypingResource', function () {
   }
 });
 
-describe.skip('TODO: Event/Call', function () {
-  const example: any = {
-    clientmessageid: '16930058130863214577',
-    composetime: '2017-01-08T14:49:20.395Z',
-    messagetype: 'Event/Call',
-    originalarrivaltime: '2017-01-08T14:49:20.395Z',
-    type: 'Message',
-    version: '1483886960408',
-    isactive: true,
-    from: 'https://db5-client-s.gateway.messenger.live.com/v1/users/ME/contacts/8:bob',
-    id: '1483886960408',
-    conversationLink: 'https://db5-client-s.gateway.messenger.live.com/v1/users/ME/conversations/8:bob',
-    counterpartymessageid: '1483886960402',
-    imdisplayname: 'Bob',
-    // tslint:disable-next-line:max-line-length
-    ackrequired:
-      'https://db5-client-s.gateway.messenger.live.com/v1/users/ME/conversations/ALL/messages/1483886960408/ack',
-    // tslint:disable-next-line:max-line-length
-    content: '<partlist type="started" alt="">\n  <part identity="bob">\n    <name>Bob</name>\n  </part>\n</partlist>',
-    skypeguid: '2ff47f4b-5b79-4076-a1ae-d34d6d89b135',
-  };
-});
+/*
+  describe.skip('TODO: Event/Call', function () {
+    const example: any = {
+      clientmessageid: '16930058130863214577',
+      composetime: '2017-01-08T14:49:20.395Z',
+      messagetype: 'Event/Call',
+      originalarrivaltime: '2017-01-08T14:49:20.395Z',
+      type: 'Message',
+      version: '1483886960408',
+      isactive: true,
+      from: 'https://db5-client-s.gateway.messenger.live.com/v1/users/ME/contacts/8:bob',
+      id: '1483886960408',
+      conversationLink: 'https://db5-client-s.gateway.messenger.live.com/v1/users/ME/conversations/8:bob',
+      counterpartymessageid: '1483886960402',
+      imdisplayname: 'Bob',
+      // tslint:disable-next-line:max-line-length
+      ackrequired:
+        'https://db5-client-s.gateway.messenger.live.com/v1/users/ME/conversations/ALL/messages/1483886960408/ack',
+      // tslint:disable-next-line:max-line-length
+      content: '<partlist type="started" alt="">\n  <part identity="bob">\n    <name>Bob</name>\n  </part>\n</partlist>',
+      skypeguid: '2ff47f4b-5b79-4076-a1ae-d34d6d89b135',
+    };
+  });
+*/

@@ -45,10 +45,9 @@ function buildInviteRequest(username: string, contact: string): string[] {
 }
 
 // /users/:user/contacts/auth-request/:contact/accept
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function buildAuthRequestAccept(username: string, contact: string): string[] {
-  return buildAuthRequest(username, contact).concat('accept');
-}
+// function buildAuthRequestAccept(username: string, contact: string): string[] {
+//   return buildAuthRequest(username, contact).concat('accept');
+// }
 
 // /users/:user/contacts/auth-request/:contact/decline
 function buildAuthRequestDecline(username: string, contact: string): string[] {
@@ -93,16 +92,14 @@ function buildProfile(username: string): string[] {
 // },
 
 // /users/:user/profile/avatar?cacheHeaders=1
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function buildAvatar(username: string): string[] {
-  return buildProfile(username).concat('avatar?cacheHeaders=1');
-}
+// function buildAvatar(username: string): string[] {
+//   return buildProfile(username).concat('avatar?cacheHeaders=1');
+// }
 
 // /users/:user/profile/avatar
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function buildUpdatedAvatar(username: string): string[] {
-  return buildProfile(username).concat('avatar');
-}
+// function buildUpdatedAvatar(username: string): string[] {
+//   return buildProfile(username).concat('avatar');
+// }
 
 function buildProfiles(): string[] {
   return buildBatch().concat('profiles');

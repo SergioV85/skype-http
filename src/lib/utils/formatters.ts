@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Incident } from 'incident';
+// import { Incident } from 'incident';
 import { map } from 'lodash';
 import { Contact } from '../interfaces/api/contact';
 import { Conversation, ThreadProperties } from '../interfaces/api/conversation';
@@ -60,18 +59,16 @@ export function formatContact(native: NativeContact): Contact {
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/agentToPerson.js
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-function agentToPerson(native: any): any {}
+// function agentToPerson(native: any): any {}
 
 // TODO: check that the uri uses the HTTPS protocol
 function ensureHttps(uri: string) {
   return uri;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function define(...args: any[]) {
-  return null;
-}
+// function define(...args: any[]) {
+//   return null;
+// }
 
 function searchContactToPerson(native: NativeSearchContact): Contact {
   let avatarUrl: string | null;
@@ -117,21 +114,21 @@ function contactToPerson(native: NativeContact): Contact {
   const SUGGESTED_CONTACT_ACTIVITY_MESSAGE = 'Skype';
 
   // TODO(demurgos): typedef
-  const authorizationStates = {
-    UNKNOWN: 'UNKNOWN',
-    UNAUTHORIZED: 'UNAUTHORIZED',
-    PENDING_OUTGOING: 'PENDING_OUTGOING',
-    PENDING_INCOMING: 'PENDING_INCOMING',
-    AUTHORIZED: 'AUTHORIZED',
-    SUGGESTED: 'SUGGESTED',
-  };
+  // const authorizationStates = {
+  //   UNKNOWN: 'UNKNOWN',
+  //   UNAUTHORIZED: 'UNAUTHORIZED',
+  //   PENDING_OUTGOING: 'PENDING_OUTGOING',
+  //   PENDING_INCOMING: 'PENDING_INCOMING',
+  //   AUTHORIZED: 'AUTHORIZED',
+  //   SUGGESTED: 'SUGGESTED',
+  // };
 
   // TODO(demurgos): typedef
-  const showStrategies = {
-    ALL: 'ALL',
-    AVAILABLE_ONLY: 'AVAILABLE_ONLY',
-    AGENTS_ONLY: 'AGENTS_ONLY',
-  };
+  // const showStrategies = {
+  //   ALL: 'ALL',
+  //   AVAILABLE_ONLY: 'AVAILABLE_ONLY',
+  //   AGENTS_ONLY: 'AGENTS_ONLY',
+  // };
 
   let activityMessage: string | null;
   if (native.suggested) {
@@ -140,28 +137,28 @@ function contactToPerson(native: NativeContact): Contact {
     activityMessage = native.mood === undefined ? null : native.mood;
   }
 
-  let capabilities: string[];
-  if (native.type === 'agent') {
-    capabilities = native.agent.capabilities;
-  } else if (native.type === 'pstn') {
-    capabilities = ['audio.receive', 'group.add'];
-  } else {
-    capabilities = [];
-  }
-
-  let authorizationState: string;
-  if (native.authorized) {
-    authorizationState = authorizationStates.AUTHORIZED;
-  } else if (native.suggested) {
-    authorizationState = authorizationStates.SUGGESTED;
-  } else {
-    authorizationState = authorizationStates.PENDING_OUTGOING;
-  }
+  // let capabilities: string[];
+  // if (native.type === 'agent') {
+  //   capabilities = native.agent.capabilities;
+  // } else if (native.type === 'pstn') {
+  //   capabilities = ['audio.receive', 'group.add'];
+  // } else {
+  //   capabilities = [];
+  // }
+  //
+  // let authorizationState: string;
+  // if (native.authorized) {
+  //   authorizationState = authorizationStates.AUTHORIZED;
+  // } else if (native.suggested) {
+  //   authorizationState = authorizationStates.SUGGESTED;
+  // } else {
+  //   authorizationState = authorizationStates.PENDING_OUTGOING;
+  // }
 
   // We can safely cast here because `mriTypeFromTypeName` tests the validity of the name.
   const type: MriType = mriTypeFromTypeName(native.type as MriTypeName);
   const typeKey: MriTypeCode = mriTypeToTypeCode(type);
-  const isAgent: boolean = native.type === 'agent';
+  // const isAgent: boolean = native.type === 'agent';
 
   let avatarUrl: string | null;
 
@@ -208,33 +205,33 @@ function contactToPerson(native: NativeContact): Contact {
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/dataMaps.js
-function phoneTypeNameToPhoneTypeKey(typeName: string) {
-  switch (typeName) {
-    case 'Home':
-      return '0';
-    case 'Work':
-      return '1';
-    case 'Cell':
-      return '2';
-    case 'Other':
-      return '3';
-    default:
-      throw new Incident('unknown-phone-type-name', { typeName }, `Unknwon phone type name ${typeName}`);
-  }
-}
+// function phoneTypeNameToPhoneTypeKey(typeName: string) {
+//   switch (typeName) {
+//     case 'Home':
+//       return '0';
+//     case 'Work':
+//       return '1';
+//     case 'Cell':
+//       return '2';
+//     case 'Other':
+//       return '3';
+//     default:
+//       throw new Incident('unknown-phone-type-name', { typeName }, `Unknwon phone type name ${typeName}`);
+//   }
+// }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/dataMaps.js
-function phoneTypeKeyToPhoneTypeName(typeKey: string) {
-  switch (typeKey) {
-    case '0':
-      return 'Home';
-    case '1':
-      return 'Work';
-    case '2':
-      return 'Cell';
-    case '3':
-      return 'Other';
-    default:
-      throw new Incident('unknown-phone-type-key', { typeCode: typeKey }, `Unknwon phone type key ${typeKey}`);
-  }
-}
+// function phoneTypeKeyToPhoneTypeName(typeKey: string) {
+//   switch (typeKey) {
+//     case '0':
+//       return 'Home';
+//     case '1':
+//       return 'Work';
+//     case '2':
+//       return 'Cell';
+//     case '3':
+//       return 'Other';
+//     default:
+//       throw new Incident('unknown-phone-type-key', { typeCode: typeKey }, `Unknwon phone type key ${typeKey}`);
+//   }
+// }

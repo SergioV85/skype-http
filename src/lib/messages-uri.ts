@@ -11,8 +11,7 @@ import * as httpIo from './interfaces/http-io';
 
 const CONVERSATION_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)$/;
 const CONTACT_PATTERN = /^\/v1\/users\/([^/]+)\/contacts\/([^/]+)$/;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MESSAGES_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)\/messages$/;
+// const MESSAGES_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)\/messages$/;
 const MESSAGE_PATTERN = /^\/v1\/users\/([^/]+)\/conversations\/([^/]+)\/messages\/([^/]+)$/;
 
 function joinPath(parts: string[]): string {
@@ -310,12 +309,12 @@ export function parseMessage(uri: string): MessageUri {
   if (parsed.host === undefined || parsed.pathname === undefined) {
     throw new Incident('parse-error', 'Expected URI to have a host and path');
   }
-  const match: RegExpExecArray | null = MESSAGE_PATTERN.exec(parsed.pathname);
+  const match: RegExpExecArray | null = MESSAGE_PATTERN.exec(parsed.pathname as string);
   if (match === null) {
     throw new Incident('parse-error', 'Expected URI to be a message uri');
   }
   return {
-    host: parsed.host,
+    host: parsed.host as string,
     user: match[1],
     conversation: match[2],
     message: match[3],
@@ -333,12 +332,12 @@ export function parseContact(uri: string): ContactUri {
   if (parsed.host === undefined || parsed.pathname === undefined) {
     throw new Incident('parse-error', 'Expected URI to have a host and path');
   }
-  const match: RegExpExecArray | null = CONTACT_PATTERN.exec(parsed.pathname);
+  const match: RegExpExecArray | null = CONTACT_PATTERN.exec(parsed.pathname as string);
   if (match === null) {
     throw new Incident('parse-error', 'Expected URI to be a conversation uri');
   }
   return {
-    host: parsed.host,
+    host: parsed.host as string,
     user: match[1],
     contact: match[2],
   };
@@ -355,12 +354,12 @@ export function parseConversation(uri: string): ConversationUri {
   if (parsed.host === undefined || parsed.pathname === undefined) {
     throw new Incident('parse-error', 'Expected URI to have a host and path');
   }
-  const match: RegExpExecArray | null = CONVERSATION_PATTERN.exec(parsed.pathname);
+  const match: RegExpExecArray | null = CONVERSATION_PATTERN.exec(parsed.pathname as string);
   if (match === null) {
     throw new Incident('parse-error', 'Expected URI to be a conversation uri');
   }
   return {
-    host: parsed.host,
+    host: parsed.host as string,
     user: match[1],
     conversation: match[2],
   };
