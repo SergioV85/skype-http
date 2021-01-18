@@ -1,4 +1,4 @@
-export type Status = "Hidden" | "Online" | "Away" | "Busy";
+export type Status = 'Hidden' | 'Online' | 'Away' | 'Busy';
 
 export interface Credentials {
   username: string;

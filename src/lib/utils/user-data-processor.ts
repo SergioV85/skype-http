@@ -1,8 +1,8 @@
-import _ from "lodash";
+import { isString } from 'lodash';
 
 // github:demurgos/skype-web-reversed -> utils/people/userDataProcessor.js
 export function sanitizeXml(xmlString: string) {
-  return _.isString(xmlString) ? _.escape(xmlString) : "";
+  return isString(xmlString) ? escape(xmlString) : '';
 }
 
 // github:demurgos/skype-web-reversed -> utils/people/userDataProcessor.js

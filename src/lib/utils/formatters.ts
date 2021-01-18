@@ -1,20 +1,23 @@
-import { Incident } from "incident";
-import _ from "lodash";
-import { Contact } from "../interfaces/api/contact";
-import { Conversation, ThreadProperties } from "../interfaces/api/conversation";
-import { Contact as NativeContact, SearchContact as NativeSearchContact } from "../interfaces/native-api/contact";
+import { Incident } from 'incident';
+import { map } from 'lodash';
+import { Contact } from '../interfaces/api/contact';
+import { Conversation, ThreadProperties } from '../interfaces/api/conversation';
+import { Contact as NativeContact, SearchContact as NativeSearchContact } from '../interfaces/native-api/contact';
 import {
-  Conversation as NativeConversation, Thread as NativeThread,
+  Conversation as NativeConversation,
+  Thread as NativeThread,
   ThreadMember as NativeThreadMember,
-} from "../interfaces/native-api/conversation";
-import { MriType, MriTypeCode, mriTypeFromTypeName, MriTypeName, mriTypeToTypeCode, mriTypeToTypeName } from "../mri";
-import { sanitizeXml } from "./user-data-processor";
+} from '../interfaces/native-api/conversation';
+import { MriType, MriTypeCode, mriTypeFromTypeName, MriTypeName, mriTypeToTypeCode, mriTypeToTypeName } from '../mri';
+import { sanitizeXml } from './user-data-processor';
 
 export function formatConversation(native: NativeConversation): Conversation {
   // TODO: parse id
-  if (native.id.indexOf("19:") === 0) { // thread
+  if (native.id.indexOf('19:') === 0) {
+    // thread
     return native;
-  } else { // private
+  } else {
+    // private
     const contact: string = native.id;
     const result: Conversation = native;
     result.members = [contact];
@@ -23,17 +26,17 @@ export function formatConversation(native: NativeConversation): Conversation {
 }
 
 export function formatThread(native: NativeThread): Conversation {
-  const memberIds: string[] = _.map(native.members, ((member: NativeThreadMember): string => member.id));
+  const memberIds: string[] = map(native.members, (member: NativeThreadMember): string => member.id);
   const properties: ThreadProperties = {};
 
-  if ("properties" in native) {
-    if ("topic" in native.properties) {
+  if ('properties' in native) {
+    if ('topic' in native.properties) {
       properties.topic = native.properties.topic;
     }
-    if ("lastjoinat" in native.properties) {
+    if ('lastjoinat' in native.properties) {
       properties.topic = native.properties.lastjoinat;
     }
-    if ("version" in native.properties) {
+    if ('version' in native.properties) {
       properties.topic = native.properties.version;
     }
   }
@@ -56,9 +59,7 @@ export function formatContact(native: NativeContact): Contact {
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/agentToPerson.js
-function agentToPerson(native: any): any {
-
-}
+function agentToPerson(native: any): any {}
 
 // TODO: check that the uri uses the HTTPS protocol
 function ensureHttps(uri: string) {
@@ -71,16 +72,16 @@ function define(...args: any[]) {
 
 function searchContactToPerson(native: NativeSearchContact): Contact {
   let avatarUrl: string | null;
-  if (typeof native.avatarUrl === "string") {
+  if (typeof native.avatarUrl === 'string') {
     avatarUrl = ensureHttps(native.avatarUrl);
     // TODO: ensure that the "cacheHeaders=1" queryString is there
   } else {
     avatarUrl = null;
   }
-  const workloads: string | null  = native.workloads;
+  const workloads: string | null = native.workloads;
   const displayName: string = sanitizeXml(native.displayname);
-  const firstName: string | null = (native.firstname !== undefined) ? sanitizeXml(native.firstname) : null;
-  const lastName: string | null = (native.lastname !== undefined) ? sanitizeXml(native.lastname) : null;
+  const firstName: string | null = native.firstname !== undefined ? sanitizeXml(native.firstname) : null;
+  const lastName: string | null = native.lastname !== undefined ? sanitizeXml(native.lastname) : null;
 
   const phoneNumbers: any[] = [];
   const locations: any[] = [];
@@ -112,25 +113,25 @@ function searchContactToPerson(native: NativeSearchContact): Contact {
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/contactToPerson.js
 function contactToPerson(native: NativeContact): Contact {
-  const SUGGESTED_CONTACT_ACTIVITY_MESSAGE: string = "Skype";
+  const SUGGESTED_CONTACT_ACTIVITY_MESSAGE = 'Skype';
 
   // TODO(demurgos): typedef
   // tslint:disable-next-line:typedef
   const authorizationStates = {
-    UNKNOWN: "UNKNOWN",
-    UNAUTHORIZED: "UNAUTHORIZED",
-    PENDING_OUTGOING: "PENDING_OUTGOING",
-    PENDING_INCOMING: "PENDING_INCOMING",
-    AUTHORIZED: "AUTHORIZED",
-    SUGGESTED: "SUGGESTED",
+    UNKNOWN: 'UNKNOWN',
+    UNAUTHORIZED: 'UNAUTHORIZED',
+    PENDING_OUTGOING: 'PENDING_OUTGOING',
+    PENDING_INCOMING: 'PENDING_INCOMING',
+    AUTHORIZED: 'AUTHORIZED',
+    SUGGESTED: 'SUGGESTED',
   };
 
   // TODO(demurgos): typedef
   // tslint:disable-next-line:typedef
   const showStrategies = {
-    ALL: "ALL",
-    AVAILABLE_ONLY: "AVAILABLE_ONLY",
-    AGENTS_ONLY: "AGENTS_ONLY",
+    ALL: 'ALL',
+    AVAILABLE_ONLY: 'AVAILABLE_ONLY',
+    AGENTS_ONLY: 'AGENTS_ONLY',
   };
 
   let activityMessage: string | null;
@@ -141,10 +142,10 @@ function contactToPerson(native: NativeContact): Contact {
   }
 
   let capabilities: string[];
-  if (native.type === "agent") {
+  if (native.type === 'agent') {
     capabilities = native.agent.capabilities;
-  } else if (native.type === "pstn") {
-    capabilities = ["audio.receive", "group.add"];
+  } else if (native.type === 'pstn') {
+    capabilities = ['audio.receive', 'group.add'];
   } else {
     capabilities = [];
   }
@@ -161,17 +162,17 @@ function contactToPerson(native: NativeContact): Contact {
   // We can safely cast here because `mriTypeFromTypeName` tests the validity of the name.
   const type: MriType = mriTypeFromTypeName(native.type as MriTypeName);
   const typeKey: MriTypeCode = mriTypeToTypeCode(type);
-  const isAgent: boolean = native.type === "agent";
+  const isAgent: boolean = native.type === 'agent';
 
   let avatarUrl: string | null;
 
-  if (typeof native.avatar_url === "string") {
+  if (typeof native.avatar_url === 'string') {
     avatarUrl = ensureHttps(native.avatar_url);
     // TODO: ensure that the "cacheHeaders=1" queryString is there
   } else {
     avatarUrl = null;
   }
-  const workloads: string | null  = native.workloads;
+  const workloads: string | null = native.workloads;
 
   const displayName: string = sanitizeXml(native.display_name);
   let firstName: string | null = null;
@@ -212,39 +213,31 @@ function contactToPerson(native: NativeContact): Contact {
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/dataMaps.js
 function phoneTypeNameToPhoneTypeKey(typeName: string) {
   switch (typeName) {
-    case "Home":
-      return "0";
-    case "Work":
-      return "1";
-    case "Cell":
-      return "2";
-    case "Other":
-      return "3";
+    case 'Home':
+      return '0';
+    case 'Work':
+      return '1';
+    case 'Cell':
+      return '2';
+    case 'Other':
+      return '3';
     default:
-      throw new Incident(
-        "unknown-phone-type-name",
-        {typeName},
-        `Unknwon phone type name ${typeName}`,
-      );
+      throw new Incident('unknown-phone-type-name', { typeName }, `Unknwon phone type name ${typeName}`);
   }
 }
 
 // github:demurgos/skype-web-reversed -> jSkype/modelHelpers/contacts/dataMappers/dataMaps.js
 function phoneTypeKeyToPhoneTypeName(typeKey: string) {
   switch (typeKey) {
-    case "0":
-      return "Home";
-    case "1":
-      return "Work";
-    case "2":
-      return "Cell";
-    case "3":
-      return "Other";
+    case '0':
+      return 'Home';
+    case '1':
+      return 'Work';
+    case '2':
+      return 'Cell';
+    case '3':
+      return 'Other';
     default:
-      throw new Incident(
-        "unknown-phone-type-key",
-        {typeCode: typeKey},
-        `Unknwon phone type key ${typeKey}`,
-      );
+      throw new Incident('unknown-phone-type-key', { typeCode: typeKey }, `Unknwon phone type key ${typeKey}`);
   }
 }

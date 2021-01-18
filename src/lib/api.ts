@@ -1,38 +1,36 @@
-import events from "events";
-import { acceptContactRequest } from "./api/accept-contact-request";
-import { addBotAsContact, removeBotFromContacts } from "./api/add-bot-as-contact";
-import { addMemberToConversation } from "./api/add-member";
-import { addUserAsContact, removeUserFromContacts } from "./api/add-user-as-contact";
-import { createConversation } from "./api/create-conversation";
-import { declineContactRequest } from "./api/decline-contact-request";
-import { getContact } from "./api/get-contact";
-import { getConversation } from "./api/get-conversation";
-import { getConversations } from "./api/get-conversations";
-import { getJoinUrl } from "./api/get-join-url";
-import { searchSkypeDirectory } from "./api/search-directory";
-import { sendAudio } from "./api/send-audio";
-import { sendDelete } from "./api/send-delete";
-import { sendDocument } from "./api/send-document";
-import { sendEdit } from "./api/send-edit";
-import { sendImage } from "./api/send-image";
-import { sendMessage } from "./api/send-message";
-import { setConversationTopic } from "./api/set-conversation-topic";
-import { setStatus } from "./api/set-status";
-import { ContactsInterface, ContactsService } from "./contacts/contacts";
-import * as api from "./interfaces/api/api";
-import { Contact as _Contact } from "./interfaces/api/contact";
-import { Context as ApiContext } from "./interfaces/api/context";
-import { Conversation } from "./interfaces/api/conversation";
-import * as apiEvents from "./interfaces/api/events";
-import { HttpIo } from "./interfaces/http-io";
-import { AllUsers } from "./interfaces/native-api/conversation";
-import { MessagesPoller } from "./polling/messages-poller";
-import { Contact } from "./types/contact";
-import { Invite } from "./types/invite";
+import events from 'events';
+import { acceptContactRequest } from './api/accept-contact-request';
+import { addBotAsContact, removeBotFromContacts } from './api/add-bot-as-contact';
+import { addMemberToConversation } from './api/add-member';
+import { addUserAsContact, removeUserFromContacts } from './api/add-user-as-contact';
+import { createConversation } from './api/create-conversation';
+import { declineContactRequest } from './api/decline-contact-request';
+import { getContact } from './api/get-contact';
+import { getConversation } from './api/get-conversation';
+import { getConversations } from './api/get-conversations';
+import { getJoinUrl } from './api/get-join-url';
+import { searchSkypeDirectory } from './api/search-directory';
+import { sendAudio } from './api/send-audio';
+import { sendDelete } from './api/send-delete';
+import { sendDocument } from './api/send-document';
+import { sendEdit } from './api/send-edit';
+import { sendImage } from './api/send-image';
+import { sendMessage } from './api/send-message';
+import { setConversationTopic } from './api/set-conversation-topic';
+import { setStatus } from './api/set-status';
+import { ContactsInterface, ContactsService } from './contacts/contacts';
+import * as api from './interfaces/api/api';
+import { Contact as _Contact } from './interfaces/api/contact';
+import { Context as ApiContext } from './interfaces/api/context';
+import { Conversation } from './interfaces/api/conversation';
+import * as apiEvents from './interfaces/api/events';
+import { HttpIo } from './interfaces/http-io';
+import { AllUsers } from './interfaces/native-api/conversation';
+import { MessagesPoller } from './polling/messages-poller';
+import { Contact } from './types/contact';
+import { Invite } from './types/invite';
 
-export interface ApiEvents extends NodeJS.EventEmitter {
-
-}
+export type ApiEvents = NodeJS.EventEmitter;
 
 export class Api extends events.EventEmitter implements ApiEvents {
   io: HttpIo;
@@ -46,9 +44,9 @@ export class Api extends events.EventEmitter implements ApiEvents {
     this.context = context;
     this.io = io;
     this.messagesPoller = new MessagesPoller(this.io, this.context);
-    this.messagesPoller.on("error", (err: Error) => this.emit("error", err));
+    this.messagesPoller.on('error', (err: Error) => this.emit('error', err));
     // tslint:disable-next-line:no-void-expression
-    this.messagesPoller.on("event-message", (ev: apiEvents.EventMessage) => this.handlePollingEvent(ev));
+    this.messagesPoller.on('event-message', (ev: apiEvents.EventMessage) => this.handlePollingEvent(ev));
     this.contactsService = new ContactsService(this.io);
   }
 
@@ -66,7 +64,7 @@ export class Api extends events.EventEmitter implements ApiEvents {
     return this.contactsService.getInvites(this.context);
   }
 
-  async searchSkypeDirectory(contactId: string): Promise<String> {
+  async searchSkypeDirectory(contactId: string): Promise<string> {
     return searchSkypeDirectory(this.io, this.context, contactId);
   }
 
@@ -90,7 +88,7 @@ export class Api extends events.EventEmitter implements ApiEvents {
     return removeUserFromContacts(this.io, this.context, contactId);
   }
 
-  async getContacts(delta: boolean = false): Promise<Contact[]> {
+  async getContacts(delta = false): Promise<Contact[]> {
     return this.contactsService.getContacts(this.context, delta);
   }
 
@@ -167,7 +165,7 @@ export class Api extends events.EventEmitter implements ApiEvents {
   }
 
   protected handlePollingEvent(ev: apiEvents.EventMessage): void {
-    this.emit("event", ev);
+    this.emit('event', ev);
 
     if (ev.resource === null) {
       return;
@@ -178,10 +176,10 @@ export class Api extends events.EventEmitter implements ApiEvents {
       return;
     }
 
-    if (ev.resource.type === "Text") {
-      this.emit("Text", ev.resource);
-    } else if (ev.resource.type === "RichText") {
-      this.emit("RichText", ev.resource);
+    if (ev.resource.type === 'Text') {
+      this.emit('Text', ev.resource);
+    } else if (ev.resource.type === 'RichText') {
+      this.emit('RichText', ev.resource);
     }
   }
 }

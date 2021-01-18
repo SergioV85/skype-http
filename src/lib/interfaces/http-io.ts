@@ -1,4 +1,4 @@
-import { Store as CookieStore } from "tough-cookie";
+import { Store as CookieStore } from 'tough-cookie';
 export interface BaseOptions {
   url: string;
   cookies?: CookieStore;
@@ -8,9 +8,7 @@ export interface BaseOptions {
   throwHttpErrors?: boolean;
 }
 
-export interface GetOptions extends BaseOptions {
-
-}
+export type GetOptions = BaseOptions;
 
 export interface PostOptions extends BaseOptions {
   form?: any;
