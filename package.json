@@ -13,7 +13,7 @@
     "prepare": "gulp all:tsconfig.json && gulp tslint.json && gulp dist",
     "prestart": "gulp example:build",
     "start": "node --experimental-modules build/example/example/main.js",
-    "pretest": "gulp lint && gulp lib:build",
+    "pretest": "npm run lint && gulp lib:build",
     "test": "gulp test",
     "test-online": "OCILO_TEST_ONLINE=true npm test",
     "prepublishOnly": "npm run test-online",
@@ -21,11 +21,6 @@
     "lint:fix": "eslint \"./src/lib/**/*.ts\" --fix",
     "prettier": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\"",
     "prettier:autofix": "prettier --config .prettierrc --list-different \"./src/lib/**/*.{ts,json}\" --write"
-  },
-  "pre-commit": {
-    "run": [
-      "test"
-    ]
   },
   "keywords": [
     "Skype",

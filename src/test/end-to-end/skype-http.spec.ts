@@ -1,5 +1,4 @@
 import { assert } from 'chai';
-import { ISuiteCallbackContext } from 'mocha';
 import { Api } from '../../lib/api';
 import * as SkypeHttp from '../../lib/connect';
 import { Credentials } from '../../lib/interfaces/api/api';
