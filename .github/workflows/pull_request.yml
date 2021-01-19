@@ -84,4 +84,4 @@ jobs:
             -Dsonar.sources=src/lib
             -Dsonar.test.inclusions=src/test/**/*.spec.ts
             -Dsonar.typescript.tsconfigPath=tsconfig.json
-            -Dsonar.typescript.exclusions=**/node_modules/**,src/example/**/*.*,src/custom-typings/**/*.*
+            -Dsonar.typescript.exclusions=**/node_modules/**,src/example/**,src/custom-typings/**
