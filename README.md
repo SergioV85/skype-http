@@ -4,6 +4,12 @@
 [![GitHub repository](https://img.shields.io/badge/Github-SergioV85%2Fskype--http-blue.svg)](https://github.com/SergioV85/skype-http)
 [![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@sergiov85/skype-http)](https://snyk.io/)
 
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=SergioV85_skype-http&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=SergioV85_skype-http)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=SergioV85_skype-http&metric=bugs)](https://sonarcloud.io/dashboard?id=SergioV85_skype-http)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SergioV85_skype-http&metric=code_smells)](https://sonarcloud.io/dashboard?id=SergioV85_skype-http)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SergioV85_skype-http&metric=coverage)](https://sonarcloud.io/dashboard?id=SergioV85_skype-http)
+
+
 Unofficial Skype API for Node.js via HTTP.
 This relies on the Skype Web Application and requires the credentials of the account you want to use: use it with care.
 
