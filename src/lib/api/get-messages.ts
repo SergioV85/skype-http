@@ -6,13 +6,14 @@ import { Context } from '../interfaces/api/context';
 
 import * as messagesUri from '../messages-uri';
 import { formatMessageResource } from '../utils/formatters';
+import { Resource } from '../interfaces/api';
 
 interface GetMessagesQuery {
   startTime: number; // a timestamp ?
   view: 'msnp24Equivalent' | string;
   targetType: string; // seen: Passport|Skype|Lync|Thread
 }
-export async function getMessages(io: io.HttpIo, apiContext: Context, conversationId: string): Promise<any[]> {
+export async function getMessages(io: io.HttpIo, apiContext: Context, conversationId: string): Promise<Resource[]> {
   const query: GetMessagesQuery = {
     startTime: 0,
     view: 'msnp24Equivalent',
