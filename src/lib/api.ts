@@ -9,6 +9,7 @@ import { getContact } from './api/get-contact';
 import { getConversation } from './api/get-conversation';
 import { getConversations } from './api/get-conversations';
 import { getJoinUrl } from './api/get-join-url';
+import { getMessages } from './api/get-messages';
 import { searchSkypeDirectory } from './api/search-directory';
 import { sendAudio } from './api/send-audio';
 import { sendDelete } from './api/send-delete';
@@ -98,6 +99,10 @@ export class Api extends events.EventEmitter implements ApiEvents {
 
   async getConversations(): Promise<Conversation[]> {
     return getConversations(this.io, this.context);
+  }
+
+  async getMessages(conversationId: string): Promise<any> {
+    return getMessages(this.io, this.context, conversationId);
   }
 
   async sendMessage(message: api.NewMessage, conversationId: string): Promise<api.SendMessageResult> {

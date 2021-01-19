@@ -96,3 +96,9 @@ export interface Thread {
   // https://{host}/v1/users/ME/contacts/{thread}/messages (even if targetLink points to /v1/threads)
   messages: string;
 }
+
+export interface Message extends Omit<MessageResource, 'ackrequired' | 'imdisplayname' | 'isactive' | 'threadtopic'> {
+  clientmessageid: string;
+  content: string;
+  conversationid: string;
+}
