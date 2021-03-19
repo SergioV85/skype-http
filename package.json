@@ -36,7 +36,7 @@
   ],
   "dependencies": {
     "async-file": "^2.0.2",
-    "big-integer": "^1.6.26",
+    "big-integer": "^1.6.48",
     "bluebird": "^3.7.2",
     "cheerio": "^1.0.0-rc.3",
     "escape-html": "^1.0.3",
